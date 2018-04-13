@@ -25,7 +25,8 @@ public class Muffin_design
 				FileWriter out = new FileWriter("Muffins.txt");
 				out.write(cmdArg);
 				out.close();
-			} catch (IOException ioe) 
+			} 
+			catch (IOException ioe) 
 			{
 				System.out.println("An error occured while writing!");
 				ioe.printStackTrace();
@@ -101,31 +102,42 @@ public class Muffin_design
 			}
 			else if (choice == 2)
 			{
-				Scanner fileScan, lineScan;
-				fileScan = new Scanner(new File("Muffins.txt"));
-				String ingredients = fileScan.nextLine();
-				lineScan = new Scanner(ingredients);
-				lineScan.useDelimiter(" ");
-
-				while (lineScan.hasNext())
+				String ingredients = "";
+				try
 				{
-					Amt = lineScan.nextInt();
-					Topp = lineScan.next();
-					size = lineScan.next();
-
+					Scanner fileScan = new Scanner(new File("Muffins.txt"));
+				 	ingredients = fileScan.nextLine();
+				 	fileScan.close();
 				}
-				Topp = Topp.toLowerCase();
-				size = size.toLowerCase();
-				
-				Batch_Of_Muffins Batch_1 = new Batch_Of_Muffins (Amt, Topp, size);
-				System.out.println("\n" + Batch_1 + "\n\n");
+				catch (FileNotFoundException fnfe)
+				{
+					System.out.println("File not found!");
+				}
 
-				System.out.println("******************************************************************************************************************");
+				if (ingredients != "")
+				{
+					Scanner lineScan = new Scanner(ingredients);
+					lineScan.useDelimiter(" ");
+					while (lineScan.hasNext())
+					{
+						Amt = lineScan.nextInt();
+						Topp = lineScan.next();
+						size = lineScan.next();
+					}
+					lineScan.close();
+					Topp = Topp.toLowerCase();
+					size = size.toLowerCase();
+					
+					Batch_Of_Muffins Batch_1 = new Batch_Of_Muffins (Amt, Topp, size);
+					System.out.println("\n" + Batch_1 + "\n\n");
 
-				System.out.println("For " + Amt + " muffins, you need " + Batch_1.Amount_Topping(Amt) + " " + Topp +"s \n");
-				System.out.println("You need to cook your batch of muffins at " + Batch_1.Temperature(size) + " fahrenheit.");
+					System.out.println("******************************************************************************************************************");
 
-				System.out.println("******************************************************************************************************************");
+					System.out.println("For " + Amt + " muffins, you need " + Batch_1.Amount_Topping(Amt) + " " + Topp +"s \n");
+					System.out.println("You need to cook your batch of muffins at " + Batch_1.Temperature(size) + " fahrenheit.");
+
+					System.out.println("******************************************************************************************************************");
+				}
 
 				System.out.println("\n\nDo you want to go back to the menu? (Y/N) \n ");
 				String Word = scan.next();
