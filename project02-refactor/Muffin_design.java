@@ -21,7 +21,17 @@ public class Muffin_design
 		while (Ans == 'Y' || Ans == 'y')
 		{
 			System.out.println("Menu: \t Press 1 to make a batch of muffins \n\t Press 2 to quit the program \n");
-			int choice = scan.nextInt();
+			String input = scan.next();
+			int choice;
+			try
+			{
+				choice = Integer.parseInt(input);
+			}
+			catch (NumberFormatException e)
+			{
+				choice = 0;
+			}
+			
 			if (choice == 1)
 			{
 				System.out.print("\nToday we are baking muffins! \n\n");
@@ -69,8 +79,10 @@ public class Muffin_design
 				Word = Word.toUpperCase();
 				Ans = Word.charAt(0);
 			}
-			else if (choice != 1)
+			else if (choice == 2)
 				System.exit(2);
+			else
+				System.out.println("Please enter a valid option.");
 		}
 
 	} // end main
