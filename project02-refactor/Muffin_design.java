@@ -17,6 +17,21 @@ public class Muffin_design
 {
 	public static void main(String[] args) throws IOException
 	{
+		if (args.length > 0)
+		{
+			try 
+			{
+				String cmdArg = args[0];
+				FileWriter out = new FileWriter("Muffins.txt");
+				out.write(cmdArg);
+				out.close();
+			} catch (IOException ioe) 
+			{
+				System.out.println("An error occured while writing!");
+				ioe.printStackTrace();
+			}
+		}
+
 		Scanner scan = new Scanner (System.in);
 
 		int Amt = 0;
