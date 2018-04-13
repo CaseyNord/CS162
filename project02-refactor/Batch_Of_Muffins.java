@@ -22,7 +22,8 @@ public class Batch_Of_Muffins
 	}
 
 	public String toString()
-	{	String Result;
+	{	
+		String Result;
 		Result = ("You choose to bake " + Amount + " " + Size + " muffins, with the topping " + Topping);
 		return Result;
 	}
@@ -32,21 +33,17 @@ public class Batch_Of_Muffins
 		int temp;
 
 		if (size.equals("small"))
-		{	temp = 350;
-		}
+			temp = 350;
 		else if (size.equals("medium"))
-		{ 	temp = 380;
-		}
-			else
-				temp = 410;
-
+			temp = 380;
+		else
+			temp = 410;
 		return temp;
 	}
 
 	public int Amount_Topping(int num)
 	{
 		int NumOfToppings = num * 4;
-
 		return NumOfToppings;
 	}
 

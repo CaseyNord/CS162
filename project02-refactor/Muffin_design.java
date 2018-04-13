@@ -28,7 +28,8 @@ public class Muffin_design
 				System.out.println("How many muffins would you like to bake today? ");
 				int Amt = scan.nextInt();
 					while (Amt < 1)
-					{	System.out.println("You entered a number out of range, please enter a positive number of muffins you want to bake ");
+					{	
+						System.out.println("You entered a number out of range, please enter a positive number of muffins you want to bake ");
 						System.out.println("How many muffins would you like to bake today? ");
 						Amt = scan.nextInt();
 					}
@@ -37,7 +38,8 @@ public class Muffin_design
 				String Topp = scan.next();
 				Topp = Topp.toLowerCase();
 					while (!Topp.equals("raspberry") && !Topp.equals("blueberry") && !Topp.equals("chocolate-chip"))
-					{	System.out.println("You entered a topping not available, please choose between Rasberry, Blueberry, and Chocolate-Chip");
+					{	
+						System.out.println("You entered a topping not available, please choose between Rasberry, Blueberry, and Chocolate-Chip");
 						Topp = scan.next();
 						Topp = Topp.toLowerCase();
 					}
@@ -46,7 +48,8 @@ public class Muffin_design
 				String size = scan.next();
 				size = size.toLowerCase();
 					while (!size.equals("small") && !size.equals("medium") && !size.equals("large"))
-					{	System.out.println("You entered a size not available, please choose between Small, Medium, and Large ");
+					{	
+						System.out.println("You entered a size not available, please choose between Small, Medium, and Large ");
 						size = scan.next();
 						size = size.toLowerCase();
 					}
@@ -66,10 +69,8 @@ public class Muffin_design
 				Word = Word.toUpperCase();
 				Ans = Word.charAt(0);
 			}
-
 			else if (choice != 1)
-			{	System.exit(2);
-			}
+				System.exit(2);
 		}
 
 	} // end main
