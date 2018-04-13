@@ -33,10 +33,10 @@ public class Muffin_design
 						Amt = scan.nextInt();
 					}
 
-				System.out.println("Which of these toppings would you like? Rasberry, Blueberry, Chocolate-Chip");
+				System.out.println("Which of these toppings would you like? Raspberry, Blueberry, Chocolate-Chip");
 				String Topp = scan.next();
 				Topp = Topp.toLowerCase();
-					while (!Topp.equals("rasberry") && !Topp.equals("blueberry") && !Topp.equals("chocolate-chip"))
+					while (!Topp.equals("raspberry") && !Topp.equals("blueberry") && !Topp.equals("chocolate-chip"))
 					{	System.out.println("You entered a topping not available, please choose between Rasberry, Blueberry, and Chocolate-Chip");
 						Topp = scan.next();
 						Topp = Topp.toLowerCase();
