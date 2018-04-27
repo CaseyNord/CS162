@@ -41,20 +41,20 @@ public class temperaturePane extends GridPane
     int temp1 = 59;
     int temp2 = 72;
 
-    private Label prompt1, result;
+    private Label result;
     private TextField temperature;
-
 
     public temperaturePane()
     {
+        //**************************************************************************************
 		// Textfield made by Sophia
 		// Textfield receives temperature from user, and displays a text based on the value.
-		//******************************************************************************************************
+		//**************************************************************************************
         Font font = new Font(18);
 
-        Label prompt1 = new Label("Enter temperature in Fahrenheit: ");
-        prompt1.setFont(font);
-        GridPane.setHalignment(prompt1, HPos.RIGHT);
+        Label textFieldPrompt = new Label("Enter temperature in Fahrenheit: ");
+        textFieldPrompt.setFont(font);
+        GridPane.setHalignment(textFieldPrompt, HPos.RIGHT);
 
         result = new Label("---");
         result.setFont(font);
@@ -66,11 +66,10 @@ public class temperaturePane extends GridPane
         temperature.setAlignment(Pos.CENTER);
         temperature.setOnAction(this::processReturn);
 
-
-
-		//****************************************************************************************************************************************************
+		//**************************************************************************************
 		// Checkbox made by Casey
-		// When checkbox is checked the user can change the temperature unit from fahrenheit to celsius.
+        // When checkbox is checked the user can change the temperature unit from fahrenheit to celsius.
+        //**************************************************************************************
         CheckBox checkbox = new CheckBox();
         checkbox.setText("Celsius when checked");
         checkbox.selectedProperty().addListener(new ChangeListener<Boolean>()
@@ -79,90 +78,89 @@ public class temperaturePane extends GridPane
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
                 if(newValue)
                 {
-                    prompt1.setText("Enter temperature in Fahrenheit: ");
-                    prompt1.setText("Celsius: ");
+                    textFieldPrompt.setText("Enter temperature in Celsius: ");
                     temp1 = 15;
                     temp2 = 22;
                 }
                 else
                 {
-                    prompt1.setText("Enter temperature in Celsius: ");
-                    prompt1.setText("Fahrenheit: ");
+                    textFieldPrompt.setText("Enter temperature in Fahrenheit: ");
                     temp1 = 59;
                     temp2 = 72;
                 }
             }
         });
 
-
         //*************************************************************************************
 		// Button made by Miguel
-		// loads an image of what the temperature might look like in the real world based on user input.
-
+        // loads an image of what the temperature might look like in the real world based on user input.
+        //**************************************************************************************
 		Button push = new Button("Life Example");
         push.setOnAction(this::processButtonPress);
 
         //*************************************************************************************
-		// Layout of all GUIs
+        // Layout of all GUIs
+        //**************************************************************************************
         setAlignment(Pos.CENTER);
         setHgap(20);
         setVgap(10);
         setStyle("-fx-background-color: white");
 
-        add(prompt1, 0, 0);
+        add(textFieldPrompt, 0, 0);
         add(temperature, 1, 0);
         add(result, 1, 1);
         add(checkbox, 4, 20);
         add(push, 0, 20);
     }
 
-
-
-	//*************************************************************************************************
-	// Action Event for textfield, outputs a string based on the temperature entered.
+	//**************************************************************************************
+    // Action Event for textfield, outputs a string based on the temperature entered.
+    //**************************************************************************************
     public void processReturn(ActionEvent event)
     {
-       int fahrenheitTemp = Integer.parseInt(temperature.getText());
+        int fahrenheitTemp = Integer.parseInt(temperature.getText());
 
-	  	if (fahrenheitTemp < temp1)
-	    {
-	    	result.setText("put on a coat, its cold");
-	        setStyle("-fx-background-color: lightskyblue");
-	    }
-	    else if(fahrenheitTemp < temp2)
-	    {
-	        result.setText("not yet summmer heat, but not too bad");
-	        setStyle("-fx-background-color: beige");
-	    }
-	    else
-	    {
-	       result.setText("eat some icecream");
-	       setStyle("-fx-background-color: firebrick");
-        }
-
-	}// end of processReturn
-     public void processButtonPress(ActionEvent event)
+        if (fahrenheitTemp < temp1)
         {
-			Image winter= new Image("winter.jpg");	//loads winter image
-			Image spring= new Image("spring.jpg");	//loads spring image
-			Image summer= new Image("summer.jpg");	//loads summer image
-			ImageView season = new ImageView();
-			season.setFitWidth(300);				//sets width of imageView season
-			season.setFitHeight(300);				//sets height of imageView season
-			int userTemp = Integer.parseInt(temperature.getText());		// aquires input from the user from textfield
-			if(userTemp < temp1)
-			{	season.setImage(winter);			//prints to the screen image of winter
-				add(season,1,10);
-				}
-			else if(userTemp < temp2)
-			{	season.setImage(spring);			//prints to the screen image of spring
-				add(season,1,10);
-				}
-			else
-			{	season.setImage(summer);			//prints to the screen image of summer
-				add(season,1,10);
-				}
+            result.setText("put on a coat, its cold");
+            setStyle("-fx-background-color: lightskyblue");
+        }
+        else if(fahrenheitTemp < temp2)
+        {
+            result.setText("not yet summmer heat, but not too bad");
+            setStyle("-fx-background-color: beige");
+        }
+        else
+        {
+            result.setText("eat some icecream");
+            setStyle("-fx-background-color: firebrick");
+        }
+    }// end of processReturn
+    
+    public void processButtonPress(ActionEvent event)
+    {
+        Image winter= new Image("winter.jpg");	//loads winter image
+        Image spring= new Image("spring.jpg");	//loads spring image
+        Image summer= new Image("summer.jpg");	//loads summer image
+        ImageView season = new ImageView();
+        season.setFitWidth(300);				//sets width of imageView season
+        season.setFitHeight(300);				//sets height of imageView season
+        int userTemp = Integer.parseInt(temperature.getText());		// aquires input from the user from textfield
+        if(userTemp < temp1)
+        {	
+            season.setImage(winter);			//prints to the screen image of winter
+            add(season,1,10);
+        }
+        else if(userTemp < temp2)
+        {	
+            season.setImage(spring);			//prints to the screen image of spring
+            add(season,1,10);
+        }
+        else
+        {	
+            season.setImage(summer);			//prints to the screen image of summer
+            add(season,1,10);
+        }
 	}// end of ButtonPress
-
 }
 
