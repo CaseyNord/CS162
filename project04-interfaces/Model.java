@@ -1,43 +1,28 @@
-public class Model extends java.util.Observable { // <-- what is Observable?
-	
-    private int temp1;
-    private int temp2;
-    private int userTemp;
+public class Model extends java.util.Observable // <-- what is Observable?
+{	
+    private static int fahrenheit1 = 59;
+    private static int fahrenheit2 = 72;
+    private static int celsius1 = 15;
+    private static int celsius2 = 22;
 
-    public Model()
-    {
-        temp1 = 59;
-        temp2 = 72;
-        userTemp = 0;
-	}
 
-    public void setUserTemp(int value) 
+    public static int getFahrenheit1()
     {
-		userTemp = value;
+        return fahrenheit1;
 	}
 	
-    public int getUserTemp()
+    public static int getFahrenheit2()
     {
-        return UserTemp;
-	}
-
-    public void setTemp1(int value) 
-    {
-		temp1 = value;
-	}
-	
-    public int getTemp1()
-    {
-        return temp1;
-	}
+        return fahrenheit2;
+    }
     
-    public void setTemp2(int value) 
+    public static int getCelsius1()
     {
-		temp1 = value;
-	}
-	
-    public int getTemp2()
+        return celsius1;
+    }
+
+    public static int getCelsius2()
     {
-        return temp2;
-	}
+        return celsius2;
+    }
 }

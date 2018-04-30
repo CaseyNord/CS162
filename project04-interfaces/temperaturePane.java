@@ -1,10 +1,10 @@
 // Name: Casey Nord
 // Class: CS162 Spring 2018
 // Class time: 10:00am
-// Date: 04/23/2018
-// Project #: Project 3
+// Date: 04/30/2018
+// Project #: Project 4
 // Team members: Miguel Ruiz, Sophia Kaeufel
-// Driver Name: temperaturePane
+// Driver Name: Project04.java
 // Program Description: Team project to create three interactive GUIs
 // Test Oracle: Textfield: 	Input different values into the textfiel see if the output label changes.
 //							30 fahrenheit or 12 celsius = put on a coat, its cold
@@ -26,6 +26,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javax.lang.model.util.ElementScanner6;
+
+import com.sun.javafx.scene.text.TextSpan;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -36,14 +39,16 @@ import javafx.scene.image.Image ;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.*;
 
-public class temperaturePane extends GridPane
-{
-    int temp1 = 59;
-    int temp2 = 72;
+//import Model;
 
-    private Label result;
+
+public class temperaturePane extends GridPane implements TextField_Interface, Checkbox_Interface, Button_Interface
+{
+    int temp1 = Model.getFahrenheit1();
+    int temp2 = Model.getFahrenheit2();
+
+    private Label result, textFieldPrompt;
     private TextField temperature;
-    private Label textFieldPrompt;
 
     public temperaturePane()
     {
@@ -143,22 +148,22 @@ public class temperaturePane extends GridPane
             season.setImage(summer);			//prints to the screen image of summer
             add(season,1,10);
         }
-	}
-
+    }
+    
     public void processChanged(ActionEvent event)
     {
         if(((CheckBox)event.getSource()).isSelected())
         {
             textFieldPrompt.setText("Enter temperature in Celsius: ");
-            temp1 = 15;
-            temp2 = 22;
+            temp1 = Model.getCelsius1();
+            temp2 = Model.getCelsius2();
         }
         else
         {
             textFieldPrompt.setText("Enter temperature in Fahrenheit: ");
-            temp1 = 59;
-            temp2 = 72;
+            temp1 = Model.getFahrenheit1();
+            temp2 = Model.getFahrenheit2();
         }
-    }//end processChanged
-}//end tempPane
+    }
+}
 

@@ -3,7 +3,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 
-public class Project4 extends Application
+public class Project04 extends Application
 {
     public void start(Stage primaryStage)
     {
