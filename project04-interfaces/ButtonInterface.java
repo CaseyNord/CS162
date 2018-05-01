@@ -1,7 +1,7 @@
 import java.lang.*;
 import javafx.event.ActionEvent;
 
-public interface Button_Interface
+public interface ButtonInterface
 {
 	public void processButtonPress(ActionEvent event);
 }

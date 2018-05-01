@@ -18,39 +18,37 @@
 //							fahrenheit of 55 = green
 //							fahrenheit of 70 = red
 //**************************************************************************************************************************
+import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
-import javafx.scene.text.Font;
-import javax.lang.model.util.ElementScanner6;
-
-import com.sun.javafx.scene.text.TextSpan;
-
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-import javafx.scene.control.CheckBox;
-import javafx.beans.value.*;
-import javafx.scene.control.Button;
+import javafx.scene.Group;
 import javafx.scene.image.Image ;
 import javafx.scene.image.ImageView;
-import javafx.scene.shape.*;
+import javafx.scene.layout.GridPane;
+import javafx.scene.Scene;
+import javafx.scene.text.Font;
+import javafx.stage.Stage;
 
-//import Model;
 
-
-public class temperaturePane extends GridPane implements TextField_Interface, Checkbox_Interface, Button_Interface
+public class TemperaturePane extends GridPane implements TextFieldInterface, CheckboxInterface, ButtonInterface
 {
-    int temp1 = Model.getFahrenheit1();
-    int temp2 = Model.getFahrenheit2();
+    private int temp1 = Model.getFahrenheit1();
+    private int temp2 = Model.getFahrenheit2();
+
+    private Image winter = new Image("winter.jpg");
+    private Image spring = new Image("spring.jpg");
+    private Image summer = new Image("summer.jpg");
 
     private Label result, textFieldPrompt;
     private TextField temperature;
+    private ImageView season;
 
-    public temperaturePane()
+    public TemperaturePane()
     {
         //**************************************************************************************
 		// Textfield made by Sophia
@@ -60,7 +58,7 @@ public class temperaturePane extends GridPane implements TextField_Interface, Ch
 
         textFieldPrompt = new Label("Enter temperature in Fahrenheit: ");
         textFieldPrompt.setFont(font);
-        GridPane.setHalignment(textFieldPrompt, HPos.RIGHT);
+        GridPane.setHalignment(textFieldPrompt, HPos.CENTER);
 
         result = new Label("---");
         result.setFont(font);
@@ -87,6 +85,10 @@ public class temperaturePane extends GridPane implements TextField_Interface, Ch
 		Button push = new Button("Life Example");
         push.setOnAction(this::processButtonPress);
 
+        season = new ImageView();
+        season.setFitWidth(300);
+        season.setFitHeight(300);
+
         //*************************************************************************************
         // Layout of all GUIs
         //**************************************************************************************
@@ -95,11 +97,19 @@ public class temperaturePane extends GridPane implements TextField_Interface, Ch
         setVgap(10);
         setStyle("-fx-background-color: white");
 
-        add(textFieldPrompt, 0, 0);
-        add(temperature, 1, 0);
-        add(result, 1, 1);
-        add(checkbox, 4, 20);
-        add(push, 0, 20);
+
+        GridPane top = new GridPane();
+        top.add(textFieldPrompt, 0, 0);
+        top.add(temperature, 0, 1);
+        top.add(push, 0, 3);
+        top.add(checkbox, 0, 4);
+
+        GridPane bottom = new GridPane();
+        bottom.add(result, 0, 1);
+        bottom.add(season, 0, 2);
+
+        this.add(top, 0, 1);
+        this.add(bottom, 0 , 2);
     }
 
 
@@ -126,27 +136,19 @@ public class temperaturePane extends GridPane implements TextField_Interface, Ch
     
     public void processButtonPress(ActionEvent event)
     {
-        Image winter= new Image("winter.jpg");	//loads winter image
-        Image spring= new Image("spring.jpg");	//loads spring image
-        Image summer= new Image("summer.jpg");	//loads summer image
-        ImageView season = new ImageView();
-        season.setFitWidth(300);				//sets width of imageView season
-        season.setFitHeight(300);				//sets height of imageView season
         int userTemp = Integer.parseInt(temperature.getText());		// aquires input from the user from textfield
+
         if(userTemp < temp1)
         {	
-            season.setImage(winter);			//prints to the screen image of winter
-            add(season,1,10);
+            season.setImage(winter);
         }
         else if(userTemp < temp2)
         {	
-            season.setImage(spring);			//prints to the screen image of spring
-            add(season,1,10);
+            season.setImage(spring);
         }
         else
         {	
-            season.setImage(summer);			//prints to the screen image of summer
-            add(season,1,10);
+            season.setImage(summer);
         }
     }
     

@@ -7,7 +7,7 @@ public class Project04 extends Application
 {
     public void start(Stage primaryStage)
     {
-        Scene scene = new Scene(new temperaturePane(), 800, 950);
+        Scene scene = new Scene(new TemperaturePane(), 800, 950);
 
         primaryStage.setTitle("Temperature");
         primaryStage.setScene(scene);
