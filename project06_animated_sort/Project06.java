@@ -13,6 +13,9 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
+import javafx.scene.control.Button;
+import javafx.geometry.HPos;
+
 
 public class Project06 extends Application
 {
@@ -35,73 +38,125 @@ public class Project06 extends Application
         display = new Display();
 
         int[] myArray = MyArray.createRandomArray(WIDTH, HEIGHT);
-
-        int forIndex = myArray.length; // Provides a value to make an early exit as the sort is looped through, to avoid generating useless frames.
         
+        Button button = new Button("Start Sort!");
+
         GridPane grid = new GridPane();
         grid.add(display, 0, 0);
+        grid.add(button, 0, 1);
+        GridPane.setHalignment(button, HPos.CENTER);
 
         primaryStage.setTitle("Sort");
-        primaryStage.setScene(new Scene(grid, WIDTH*SCALE, HEIGHT*SCALE));
+        primaryStage.setScene(new Scene(grid, WIDTH*SCALE, HEIGHT*SCALE+31));
         primaryStage.show();
 
         sortLoop = new Timeline();
 
-        // KeyFrame loop
-        for (int index = 0; index < forIndex; index++)
-        {        
-            int i = index;
-
-            KeyFrame kf = new KeyFrame(Duration.seconds(.003+(frameCounter*.003)), actionEvent -> {
-            //KeyFrame kf = new KeyFrame(Duration.seconds(1+frameCounter), actionEvent -> {
-
-                display.clear();
-
-                // Assign color values to pixel array before rendering
-                for (int k = 0; k < myArray.length; k++)
-                {
-                    for (int j = (HEIGHT - 1); j > ((HEIGHT - myArray[k]) - 1); j--)
-                    {
-                        display.setPixel(k, j, 1);
-                    }
-                    for (int j = (HEIGHT - 1); j > ((HEIGHT - myArray[i]) - 1); j--)
-                    {
-                        display.setPixel(i, j, 2);
-                    }
-                    for (int j = (HEIGHT - 1); j > ((HEIGHT - myArray[i + 1]) - 1); j--)
-                    {
-                        display.setPixel(i + 1, j, 2);
-                    }
-                }
-
-                display.render();
-
-                // Sort array -- uses KeyFrame loop for index
-                    if (myArray[i] > myArray[i + 1])
-                    {
-                        int swap = myArray[i];
-                        myArray[i] = myArray[i + 1];
-                        myArray[i + 1] = swap;
-                    }
-        
-            });
-
-            frameCounter++;
-        
-            if (loopIndex > 0)
+        // Shows initial unsorted array prior to sorting
+        display.clear();
+        for (int i = 0; i < myArray.length; i++)
+        {
+            for (int j = (HEIGHT - 1); j > ((HEIGHT - myArray[i]) - 1); j--)
             {
-                if (index == forIndex - 1)
-                {
-                    index = -1;
-                    forIndex--;
+                display.setPixel(i, j, 1);
+            }
+        }
+        display.render();
+    
+        button.setOnAction(new EventHandler<ActionEvent>()
+        {            
+            @Override
+            public void handle(ActionEvent event)
+            {
+
+                int forIndex = myArray.length; // Provides a value to make an early exit as the sort is looped through, to avoid generating useless frames.
+
+                // KeyFrame loop
+                for (int index = 0; index < forIndex; index++)
+                {        
+                    int i = index;
+
+                    KeyFrame kf = new KeyFrame(Duration.seconds(.01+(frameCounter*.01)), actionEvent -> {
+                    //KeyFrame kf = new KeyFrame(Duration.seconds(1+frameCounter), actionEvent -> {
+
+                        display.clear();
+
+                        // Assign color values to pixel array before rendering
+                        for (int k = 0; k < myArray.length; k++)
+                        {
+                            for (int j = (HEIGHT - 1); j > ((HEIGHT - myArray[k]) - 1); j--)
+                            {
+                                display.setPixel(k, j, 1);
+                            }
+                            for (int j = (HEIGHT - 1); j > ((HEIGHT - myArray[i]) - 1); j--)
+                            {
+                                display.setPixel(i, j, 2);
+                            }
+                            for (int j = (HEIGHT - 1); j > ((HEIGHT - myArray[i + 1]) - 1); j--)
+                            {
+                                display.setPixel(i + 1, j, 2);
+                            }
+                        }
+
+                        display.render();
+                    
+                    });
+
+                    sortLoop.getKeyFrames().add(kf);
+                    frameCounter++;
+
+                    KeyFrame kf2 = new KeyFrame(Duration.seconds(.01+(frameCounter*.01)), actionEvent -> {
+                    //KeyFrame kf2 = new KeyFrame(Duration.seconds(1+frameCounter), actionEvent -> {
+
+                        // Sort array -- uses KeyFrame loop for index
+                        if (myArray[i] > myArray[i + 1])
+                        {
+                            int swap = myArray[i];
+                            myArray[i] = myArray[i + 1];
+                            myArray[i + 1] = swap;
+                        }
+
+                        display.clear();
+
+                        // Assign color values to pixel array before rendering
+                        for (int k = 0; k < myArray.length; k++)
+                        {
+                            for (int j = (HEIGHT - 1); j > ((HEIGHT - myArray[k]) - 1); j--)
+                            {
+                                display.setPixel(k, j, 1);
+                            }
+                            for (int j = (HEIGHT - 1); j > ((HEIGHT - myArray[i]) - 1); j--)
+                            {
+                                display.setPixel(i, j, 2);
+                            }
+                            for (int j = (HEIGHT - 1); j > ((HEIGHT - myArray[i + 1]) - 1); j--)
+                            {
+                                display.setPixel(i + 1, j, 2);
+                            }
+                        }
+                
+                        display.render();
+                    
+                    });
+
+                    sortLoop.getKeyFrames().add(kf2);
+                    frameCounter++;
+                
+                    if (loopIndex > 0)
+                    {
+                        if (index == forIndex - 1)
+                        {
+                            index = -1;
+                            forIndex--;
+                        }
+                        loopIndex--;
+                    }            
                 }
-                loopIndex--;
+
+                sortLoop.play();                
             }
 
-            sortLoop.getKeyFrames().add(kf);
-        }
-
-        sortLoop.play();
+        });
     }
 
     public static void main(String[] args)
