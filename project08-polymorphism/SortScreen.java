@@ -1,4 +1,4 @@
-public class Bars extends Display
+public class SortScreen extends Display
 {
     // I want to be able to create methods to color and draw my bars in this class
 

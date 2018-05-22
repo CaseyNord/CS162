@@ -1,0 +1,19 @@
+For the animated sort project I decided to render my graphics using a custom display canvas which I hope will translate into better experience with actually rendering graphics than just utilizing that GUI tools that come with a platform like JavaFX (note that I have spent quite a bit of time implementing these sorts of tools with other platforms such as P5.js and Pico-8).
+
+My Display class has already extended (inherited) the Canvas class as this seems to be the best tool that JavaFX provides for breaking free of the restraints of streamlined GUI setups and achieving a sort of emulated representation of pixelated graphics.
+
+I further extended (inherited) my own Display class as a SortScreen class for this project so that I could write methods specific to drawing and coloring the bars needed for the sort animation.  This looks like:
+
+Canvas -> Display -> SortScreen
+
+This allows me to keep my Display class generic, and able to be used in different projects, while allowing me to not clutter my Main.java (Project07.java) with the methods that are really more related to the rendering of the display.
+
+I think this is the proper implementation of inheritance.
+
+Exception catching is done when the program draws and sorts my array.  Because my array tries to compare a value out of the bounds of the array, and my draw methods try to highlight a value outside of the array, errors occur.
+
+Because in this case I know that Java prevents me from actually accessing data beyond the bounds of my array, I'm confident that it shouldn't cause a problem and can therefore create exception handlers when it tries to step out of bounds.
+
+This brings up an interesting question, because in this application this is essentially just allowing me to be lazy!  I'm sure I could rework the structure of my code so these errors don't occur (and I should), but then I would have to think up another exception I could catch for this project!  The moral is that exceptions can and are often misused as a way to solve a problem that should be solved with better designed code.
+
+There are appropraite times when exceptions can and need to be used to prevent the program from crashing when it is doing things like trying to find a file that doesn't exist or if a user is allowed to select a list of options that potentially cause conflicts and you don't want it to bring down the whole system.  This is probably what exceptions were designed for, but because we have the freedom to do so, they are often misused and we should try to make sure not to use them as a tool to get away with writing bad code.

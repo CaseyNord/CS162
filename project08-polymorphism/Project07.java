@@ -90,7 +90,7 @@ public class Project07 extends Application
                         catch (ArrayIndexOutOfBoundsException e)
                         {
                             System.out.println("Our program tried to highlight bars outside of the bounds of");
-                            System.out.println("the array, but we know this, and it is okay\n");
+                            System.out.println("the array, but we know this, and it is okay");
                         }
                     
                     });
@@ -114,7 +114,7 @@ public class Project07 extends Application
                         catch (ArrayIndexOutOfBoundsException e)
                         {
                             System.out.println("Our program tried to look at a value outside of the bounds of");
-                            System.out.println("the array, but we know this, and it is okay\n");
+                            System.out.println("the array, but we know this, and it is okay");
                         }
 
                         try
@@ -128,7 +128,7 @@ public class Project07 extends Application
                         catch (ArrayIndexOutOfBoundsException e)
                         {
                             System.out.println("Our program tried to highlight bars outside of the bounds of");
-                            System.out.println("the array, but we know this, and it is okay\n");
+                            System.out.println("the array, but we know this, and it is okay");
                         }
                     
                     });
