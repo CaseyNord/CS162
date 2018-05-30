@@ -21,13 +21,12 @@ public class Project07 extends Application
 {
     final int SCALE = 16;
 
-    final int WIDTH = 32;
-    final int HEIGHT = 16;
+    final int WIDTH = 100;
+    final int HEIGHT = 50;
 
     Timeline sortLoop;
 
-    private SortScreen sortScreen;
-    private Display display;
+    private SortScreen display;
 
     int frameCounter = 0; // Keeps tracks of frames generated (so we don't try to write over them when resetting the KeyFrame loop index to 0)
     int loopIndex = 10000;
@@ -36,36 +35,30 @@ public class Project07 extends Application
     @Override
     public void start(Stage primaryStage) throws Exception
     {
-        sortScreen = new SortScreen(WIDTH, HEIGHT, SCALE);
-        display = new Display(WIDTH, HEIGHT, SCALE);
+        display = new SortScreen(WIDTH, HEIGHT, SCALE);
 
         int[] myArray = MyArray.createRandomArray(WIDTH, HEIGHT);
         
         Button button = new Button("Start Sort!");
 
         GridPane grid = new GridPane();
-        grid.add(sortScreen, 0, 0);
-        grid.add(display, 1, 0);
+        grid.add(display, 0, 0);
         grid.add(button, 0, 1);
         GridPane.setHalignment(button, HPos.CENTER);
 
         primaryStage.setTitle("Sort");
-        primaryStage.setScene(new Scene(grid, (WIDTH*SCALE)*2, HEIGHT*SCALE+31));
+        primaryStage.setScene(new Scene(grid, WIDTH*SCALE, HEIGHT*SCALE+31));
         primaryStage.show();
 
         sortLoop = new Timeline();
 
         // Shows initial unsorted array prior to sorting
-        sortScreen.clear();
-        sortScreen.drawBars(myArray);
-        sortScreen.render();
-        
         display.clear();
-        for (int i = 0; i < WIDTH; i++)
+        for (int i = 0; i < myArray.length; i++)
         {
-            for (int j = 0; j < HEIGHT; j++)
+            for (int j = (HEIGHT - 1); j > ((HEIGHT - myArray[i]) - 1); j--)
             {
-                display.setPixel(i, j, sortScreen.getPixel(i, j));
+                display.setPixel(i, j, 1);
             }
         }
         display.render();
@@ -88,20 +81,10 @@ public class Project07 extends Application
 
                         try
                         {
-                            sortScreen.clear();
-                            sortScreen.drawBars(myArray);
-                            sortScreen.highlightSwap(myArray, i, 2);
-                            sortScreen.highlightSwap(myArray, (i + 1), 2);
-                            sortScreen.render();
-                            
                             display.clear();
-                            for (int j = 0; j < WIDTH; j++)
-                            {
-                                for (int k = 0; k < HEIGHT; k++)
-                                {
-                                    display.setPixel(j, k, sortScreen.getPixel(j, k));
-                                }
-                            }
+                            display.drawBars(myArray);
+                            display.highlightSwap(myArray, i, 2);
+                            display.highlightSwap(myArray, (i + 1), 2);
                             display.render();
                         }
                         catch (ArrayIndexOutOfBoundsException e)
@@ -136,19 +119,10 @@ public class Project07 extends Application
 
                         try
                         {
-                            sortScreen.clear();
-                            sortScreen.drawBars(myArray);
-                            sortScreen.highlightSwap(myArray, i, 2);
-                            sortScreen.highlightSwap(myArray, (i + 1), 2);
-                            sortScreen.render();
-
-                            for (int j = 0; j < WIDTH; j++)
-                            {
-                                for (int k = 0; k < HEIGHT; k++)
-                                {
-                                    display.setPixel(j, k, sortScreen.getPixel(j, k));
-                                }
-                            }
+                            display.clear();
+                            display.drawBars(myArray);
+                            display.highlightSwap(myArray, i, 2);
+                            display.highlightSwap(myArray, (i + 1), 2);
                             display.render();
                         }
                         catch (ArrayIndexOutOfBoundsException e)

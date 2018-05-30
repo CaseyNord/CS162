@@ -9,7 +9,7 @@ public class Display extends Canvas
 
     protected static final int SCALE = 16;
 
-    int[][] pixels = new int[WIDTH][HEIGHT];
+    int[][] pixels;
 
     GraphicsContext gc;
 
@@ -18,7 +18,25 @@ public class Display extends Canvas
     {
         // Initialize the inherited canvas using super()
         super(WIDTH*SCALE, HEIGHT*SCALE);
-        //super(64*16, 32*16);
+
+        pixels = new int[WIDTH][HEIGHT];
+
+        gc = getGraphicsContext2D();
+
+        // Fill canvas with black pixels to start with blank screen
+        gc.setFill(Color.BLACK);
+        gc.fillRect(0, 0, WIDTH*SCALE, HEIGHT*SCALE);
+
+        // Call initial clear() function to zero out pixel array
+        clear();
+    }
+
+    public Display(int displayWidth, int displayHeight, int displayScale)
+    {
+        // Initialize the inherited canvas using super()
+        super(displayWidth*displayScale, displayHeight*displayScale);
+
+        pixels = new int[WIDTH][HEIGHT];
 
         gc = getGraphicsContext2D();
 
@@ -77,16 +95,4 @@ public class Display extends Canvas
     {
         return pixels[x][y];
     }
-
-    /*
-    public int getWidth()
-    {
-        return pixels[0].length;
-    }
-
-    public int getHeight()
-    {
-        return HEIGHT;
-    }
-    */
 }

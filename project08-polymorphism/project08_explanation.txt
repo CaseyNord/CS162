@@ -1,0 +1,17 @@
+I took a different route with this polymorphism project that I hope is okay.
+
+To provide some backgroud on what is going on, I created a Display class that inherits the properties of the JavaFX Canvas class so that I could create a 'pixelated' display to draw my list.
+
+For the inheritance project I created a secondary display class called SortScreen that inherits the properties of my Display class so that I could utilize it without changing the code, adding draw methods specific to the animated sort while keeping my original Display class unaltered.
+
+As an exercise, I wanted to see if I could use the same approach to implement polymorphism into my animated sort.
+
+The idea was to extend to functionality of my inherited SortScreen class to alter some of the functionality of the Display class by overriding variables and methods.  From my understanding this fits the definition of polymorphism, which is to be a descendent of a parent class while changing some of its properties.
+
+In order to make this work, I did have to alter my Display class.  That is because I would need to be able to pass arguments through the constructor of my SortScreen class to allow me to create an instance of the Display class that has uses different properties than it allows by default.
+
+To make it work I needed to add an additional constructor to my Display class that allowed me to pass in the variables I created in my SortScreen class.
+
+The result (for this project) is an animation sort that runs a size by size animation.  The animation on the left side uses the SortScreen.  It has methods that allow it to draw bars for animating the sort.  On the right is an animation that uses just the Display class.  This instance does not have the ability to draw bars, but it utilizes the array values assigned by the SortScreen class to render the same animation.
+
+This achieves a side by side sort that displays identical animations, though each display window utilizes a different class to make its display.

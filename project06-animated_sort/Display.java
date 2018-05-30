@@ -4,10 +4,10 @@ import javafx.scene.paint.Color;
 
 public class Display extends Canvas
 {
-    private final int WIDTH = 64;
-    private final int HEIGHT = 32;
+    private static final int WIDTH = 64;
+    private static final int HEIGHT = 32;
 
-    private final int SCALE = 16;
+    private static final int SCALE = 16;
 
     int[][] pixels = new int[WIDTH][HEIGHT];
 
@@ -17,8 +17,7 @@ public class Display extends Canvas
     public Display()
     {
         // Initialize the inherited canvas using super()
-        //super(WIDTH*SCALE, HEIGHT*SCALE);
-        super(64*16, 32*16);
+        super(WIDTH*SCALE, HEIGHT*SCALE);
 
         gc = getGraphicsContext2D();
 
