@@ -1,13 +1,3 @@
-//*****************************************************************
-// Name: Casey Nord
-// Class: CS162 Spring 2018
-// Class Time: Mon/Wed/Fri 10:00am
-// Date: June 12, 2018
-// Final Project
-// Driver Name: Main.java
-// Program Description: Animated sorting program
-//*****************************************************************
-
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;

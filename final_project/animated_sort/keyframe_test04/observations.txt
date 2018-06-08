@@ -1,0 +1,6 @@
+With the while loop that runs the whole sort.
+
+This while loop is supposed to run as long as the variable 'top' is greater than zero.
+It seems that when the keyframe is capturing variables, it is not possible for the while loop to detect a change in the top variable, even if the variable is made global.
+
+It really seems like the keyframs hold their values and run through and process the code around them until they are all collected and the play method is called, at which point they run, executing their values all at once, which completely desynchronizes the program.

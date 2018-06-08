@@ -1,0 +1,5 @@
+This one is all broken...
+
+It seems to hang up, so I adjusted the counters and added some printouts to make sure it was still doing something.  It is, but I feel that it gets caught in an infinite loop.
+
+There is something happening with the keyframes.  It seems almost like they snap the values and then do not use them or something.  Somehow by the time everything gets popped out on the other side, the sort is completely off and I can't figure out why.

@@ -1,0 +1,5 @@
+keyframes seem to capture values AT a specific moment in time,
+but when they replay the values they seem to apply those values when they are
+replayed.
+
+So in my case, in this example, what we are seeing as an output is all of the values applied as a series of snapshots of array assignments in order, completely desynchronized from the rest of the code...

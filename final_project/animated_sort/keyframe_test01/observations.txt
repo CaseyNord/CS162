@@ -1,0 +1,5 @@
+when this is played we see a sorted array.  WHY?  If we call the keyframe before the array is sorted, then why does it show a sorted array.
+This is because it plays the render calls AFTER the entire sort has taken place!
+It doesn't play the render call at that moment in time, rather, it plays whatever values captured at that time are.
+
+SO, since we are only capturing render calls, we end up with the sorted array values at the END of the sort, a sorted array!

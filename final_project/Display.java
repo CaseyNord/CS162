@@ -1,20 +1,35 @@
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
-public class Display extends Application
+public class Display extends Canvas
 {
     final int SCALE = 16;
 
     final int WIDTH = 64;
     final int HEIGHT = 32;
 
+    private GraphicsContext gc;
+
     public int[][] pixels = new int[WIDTH][HEIGHT];;
 
+
+    public Display()
+    {
+        super(800, 400);
+        setFocusTraversable(true);
+
+        /*
+
+        setFocusTraversable allow the Display to be the focus of the computer's
+        input so that it can respond to things like keyboard input
+
+        */
+
+        // Initialize with empty black screen
+        clear();
+        render();
+    }
 
     public void clearCanvas()
     {

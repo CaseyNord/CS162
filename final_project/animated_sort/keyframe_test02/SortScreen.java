@@ -1,18 +1,8 @@
-//*****************************************************************
-// Name: Casey Nord
-// Class: CS162 Spring 2018
-// Class Time: Mon/Wed/Fri 10:00am
-// Date: June 12, 2018
-// Final Project
-// Driver Name: Main.java
-// Program Description: Animated sorting program
-//*****************************************************************
-
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
-public class SortScreen extends Display implements SortScreenInterface
+public class SortScreen extends Display
 {    
     int displayWidth;
     int displayHeight;
@@ -95,36 +85,5 @@ public class SortScreen extends Display implements SortScreenInterface
         {
             setPixel(index, j, color);
         }
-    }
-
-    public void drawArray(int[] array)
-    {
-        clear();
-        drawBars(array);
-        render();
-    }
-
-    public void drawHighlightedArray(int[] array, int firstSwap, int secondSwap)
-    {
-        try
-        {
-            clear();
-            drawBars(array);
-            highlightSwap(array, firstSwap, 2);
-            highlightSwap(array, secondSwap, 2);
-            render();
-        }
-        catch (ArrayIndexOutOfBoundsException e)
-        {
-            System.out.println("Our program tried to highlight bars outside of the bounds of the array, but we know this, and it is okay :)\n");
-        }
-    }
-
-    public void keyFrameSwap(int[] array, int swapOne, int swapTwo)
-    {
-        int keySwap = array[swapOne];
-        array[swapOne] = array[swapTwo];
-        array[swapTwo] = keySwap;
-        drawHighlightedArray(array, swapOne, swapTwo);
     }
 }

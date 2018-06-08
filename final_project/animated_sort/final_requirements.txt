@@ -1,0 +1,50 @@
+1. An understanding of the use of variables, conditionals, loops, and arrays
+	
+	- This can be observed throughout the program
+
+
+2. An understanding of code organization, decomposition (methods, classes, and source files)
+
+	- The code is organized across various files that are broken up to sensibly organize the program
+
+
+3. An understanding of various design (hierarchy) and testing (test methods and maybe a separate driver that runs tests on your other classes!) techniques
+
+	- Example included in Main.java line 181
+	- I had more testing implemented throughout my program as it was being built but I cleaned it out as I finalized my project.
+	- The basic testing was implemented as a method to print my sorted array to make sure the sort was executing properly separate from my draw functions.
+
+
+4. User IO, file IO, and input validation
+
+	- Initially, the project was set up to allow the user to manually type in animation speeds and set the width and height of the screen manually.  Again, I didn't read the final requirements closely enough or else I would of kept some for of these, but they were confusing and led to some weird behaviour so I removed them in preference of buttons that allow the user to select from a few preset options.
+
+
+5. Java interfaces
+
+	- To keep it simple (because interfaces here are fairly redundant) I implemented an interface for my SortScreen class that is included as its own file.
+
+
+6. Recursion
+
+	- Extending the functionality of this project would allow for the use of recursive sorts. I wanted to do this but am forcing myself to stop working on this project so that I can spend an appropriate amount of time on my CS260 final. If necessary I can provide some seperate examples of recursion either from my data structures projects or some simple C programs I have written (I actually sent you an email with some photos of my whiteboard and a sample C program comparing an iterative and recursive fibonacci calculation).
+
+
+7. Nested classes
+
+	- No nested classes unfortunately, I just didn't find a need for them. I feel that I understand them well and have implemented them in other projects before!
+
+
+8. GUI components, event listeners, and their various uses
+
+	- I have lots of GUI components and button listeners in Main.java.
+
+
+9. Exceptions
+
+	- A customized exception is included in line 97 of SortScreen.java in the drawHighlightedArray method.
+
+
+10.Inheritance and polymorphism
+
+	- Inheritance and polymorphism can be found in my Display class that inherits from the build in Canvas and the SortScreen class that overrides and extends some of the methods of the Display class.
